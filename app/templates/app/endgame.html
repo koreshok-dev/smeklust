@@ -1,0 +1,9 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h1>Result game {{lobby}}</h1>
+{% for r in result %}
+<p>{{r.user}}  {{r.score}}</p>
+{% endfor %}
+{% endblock %}

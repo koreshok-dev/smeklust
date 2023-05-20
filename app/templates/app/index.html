@@ -1,0 +1,34 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="jumbotron">
+    <h1>Start new game</h1>
+    <p class="lead">Start new game</p>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Create lobby &raquo;
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href={% url 'create_lobby' n_players=3 %}>Create lobby for 3 players</a></li>
+            <li><a class="dropdown-item" href={% url 'create_lobby' n_players=4 %}>Create lobby for 4 players</a></li>
+            <li><a class="dropdown-item" href={% url 'create_lobby' n_players=5 %}>Create lobby for 5 players</a></li>
+            <li><a class="dropdown-item" href={% url 'create_lobby' n_players=6 %}>Create lobby for 6 players</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="jumbotron">
+    <h1>Join game</h1>
+    <p class="lead">Join new game</p>
+    <p><a href="{% url 'lobby_list' %}" class="btn btn-primary btn-large">Join &raquo;</a></p>
+</div>
+{% else %}
+<div class="jumbotron">
+    <h1>Not authorized</h1>
+    <p class="lead">Need authorization to continue</p>
+    <p><a href={% url 'login' %} class="btn btn-primary btn-large">Login &raquo;</a></p>
+</div>
+{% endif %}
+
+{% endblock %}

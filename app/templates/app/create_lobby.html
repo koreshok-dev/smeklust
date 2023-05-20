@@ -1,0 +1,12 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1>Loby №: {{lobby_id }}</h1>
+    <p class="lead">Loby size: 1/ {{n_players}}</p>
+    <p class="lead">Conected Users:</p>
+    <p>{{uname}}</p>
+    <p><a href="{% url 'show_lobby' lobby_number=lobby_id %}" class="btn btn-primary btn-large">Refresh</a></p>
+</div>
+
+{% endblock %}

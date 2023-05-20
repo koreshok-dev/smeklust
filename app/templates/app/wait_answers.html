@@ -1,0 +1,11 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<head>
+    <meta http-equiv="refresh" content="10; URL='{% url 'wait_answers' lobby_id=lobby %}'">
+</head>
+<h1>Waiting for other players</h1>
+<div class="col-md-3 bg">
+        <div class="loader" id="loader-1"></div>
+</div>
+{% endblock %}

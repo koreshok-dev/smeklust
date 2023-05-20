@@ -1,0 +1,11 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% for l in lobbys %}
+<div class="jumbotron">
+    <h1>Loby №: {{l.id }}</h1>
+    <p class="lead">Loby size: {{l.n_conected}}/ {{l.n_players}}</p>
+    <p><a href="{% url 'lobby_join' lobby_number=l.id n_connected=l.n_conected %}" class="btn btn-primary btn-large">Join</a></p>
+</div>
+{% endfor %}
+{% endblock %}

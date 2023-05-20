@@ -1,0 +1,71 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1>Rate answers</h1>
+<h3>Game lobby № {{lobby.id}}</h3>
+<form action="{% url 'rate_answers' lobby_id=lobby.id %}" method="post">
+{% csrf_token %}
+<div id="carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+  <div class="carousel-inner">
+        {% for r in quest %}
+            {% if forloop.counter == 1 %}
+                <div class="item active">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3>{{r.question}}  </h3>
+                            {% if r.answ1 != "0_empty" %}
+                                <p>{{r.answ1}}</p>
+                            {% endif %}
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-7"><p><input type="radio" name="{{r.id}}" value="1" align="middle">Vote</p></div> 
+                        </div>
+                        <div class="col-sm-6">
+                            <h3>{{r.question}}  </h3>
+                            {% if r.answ2 != "0_empty" %}
+                                <p>{{r.answ2}}</p>
+                            {% endif %}
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-7"><p><input type="radio" name="{{r.id}}" value="2" align="middle">Vote</p></div>                           
+                        </div>                       
+                    </div> 
+                     <input type="radio" name="{{r.id}}" value="0" checked="checked" style="display:none">
+                 </div>
+            {% else %}
+                <div class="item">
+                 <div class="row">
+                        <div class="col-sm-6">
+                            <h3>{{r.question}}  </h3>
+                            {% if r.answ1 != "0_empty" %}
+                                <p>{{r.answ1}}</p>
+                             {% endif %}
+                             <div class="col-sm-5"></div>
+                             <div class="col-sm-7"><p><input type="radio" name="{{r.id}}" value="1" align="middle">Vote</p></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h3>{{r.question}}  </h3>
+                            {% if r.answ2 != "0_empty" %}
+                                <p>{{r.answ2}}</p>
+                            {% endif %}
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-7"><p><input type="radio" name="{{r.id}}" value="2" align="middle">Vote</p></div>
+                        </div>                       
+                    </div> 
+                    <input type="radio" name="{{r.id}}" value="0" checked="checked" style="display:none">
+                </div>
+            {% endif %}
+        {% endfor %}
+  </div>
+  <!-- Элементы управления -->
+  <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Предыдущий</span>
+  </a>
+  <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Следующий</span>
+  </a>
+</div>
+    <input type="submit" value="Answer">
+</form>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1>Сontinue the joke</h1>
+<h3>Game lobby № {{lobby.id}}</h3>
+<form action="{% url 'start_game' lobby_id=lobby.id %}" method="post">
+{% csrf_token %}
+<div id="carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+  <div class="carousel-inner">
+        {% for r in quest %}
+            {% if forloop.counter == 1 %}
+                <div class="item active">
+                <h3>{{r.question}}  </h3>
+                <textarea id="{{r.id}}"  name="{{r.id}}" cols="50" rows="6"></textarea> 
+                 </div>
+            {% else %}
+                <div class="item">
+                <h3>{{r.question}}  </h3>
+                <textarea id="{{r.id}}" name="{{r.id}}" cols="50" rows="6"></textarea> 
+                </div>
+            {% endif %}
+        {% endfor %}
+  </div>
+  <!-- Элементы управления -->
+  <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Предыдущий</span>
+  </a>
+  <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Следующий</span>
+  </a>
+</div>
+<input type="submit" value="Answer">
+</form>
+
+{% endblock %}
